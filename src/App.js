@@ -1,23 +1,68 @@
-import logo from './logo.svg';
+
+import { Route, Switch, useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import './App.css';
+import About from './Pages/About';
+import Contact from './Pages/Contact';
+import Home from './Pages/Home';
+import Skills from './Pages/Skills';
+
 
 function App() {
+  const history = useHistory();
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+      <h2>Browser Router Application</h2>
+
+      <div className='nav-btn'>
+
+        <button
+        onClick={()=>history.push("/")}
         >
-          Learn React
-        </a>
-      </header>
+          Home
+        </button>
+
+        <button
+        onClick={()=>history.push("/about")}
+        >
+          About
+        </button>
+
+        <button
+        onClick={()=>history.push("/skills")}
+        >
+          Skills
+        </button>
+
+        <button
+        onClick={()=>history.push("/contact")}
+        >
+          Contact
+        </button>
+
+      </div>
+
+      <Switch>
+        <Route exact path='/'>
+           <Home />
+        </Route>
+
+        <Route path='/about'>
+          <About />
+        </Route>
+
+        <Route path='/contact'>
+          <Contact />
+        </Route>
+
+        <Route path='/skills'>
+          <Skills />
+        </Route>
+
+      </Switch>
+      
+      
+      
+      
     </div>
   );
 }
