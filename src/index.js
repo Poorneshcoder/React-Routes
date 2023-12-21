@@ -13,3 +13,6 @@ root.render(
 );
 
 reportWebVitals();
+
+// before adding router part
+

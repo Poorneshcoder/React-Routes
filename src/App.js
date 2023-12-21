@@ -1,12 +1,14 @@
-
+import React, { Suspense, lazy } from 'react';
 import { Redirect, Route, Switch, useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import './App.css';
-import About from './Pages/About';
+// import About from './Pages/About';
 import Home from './Pages/Home';
 import Skills from './Pages/Skills';
 import UserDetails from './Pages/UserDetails';
 import NoPage from './NoPage';
-
+import LogInPage from './LogInPage';
+import SignUpPage from './SignUpPage';
+const OptimizedAbout = lazy(()=> import('./Pages/About'))
 
 function App() {
   const history = useHistory();
@@ -21,7 +23,7 @@ function App() {
       <div className='nav-btn'>
 
         <button
-        onClick={()=>history.push("/")}
+        onClick={()=>history.push("/home")}
         >
           Home
         </button>
@@ -39,20 +41,38 @@ function App() {
         </button>
 
         <button
-        onClick={()=>history.push("/user/")}
+        onClick={()=>history.push("/login")}
         >
-          User
+          login
         </button>
 
       </div>
 
       <Switch>
         <Route exact path='/'>
+           <h1>welcome to Application please login/signup to continue</h1>
+        </Route>
+
+        <Route path='/login'>
+           <LogInPage />
+        </Route>
+
+        <Route path='/register'>
+           <SignUpPage />
+        </Route>
+
+        <Route path='/home'>
            <Home />
         </Route>
 
         <Route path='/about'>
-          <About />
+          <Suspense fallback={<div>Loading.......</div>}>
+            <OptimizedAbout/>
+          </Suspense>
+
+          {/* <About /> */}
+
+          
         </Route>
 
         <Route path='/user/:id/:name'>
@@ -62,6 +82,11 @@ function App() {
         <Route path='/skills'>
           <Redirect to = "/about" />
           {/* <Skills /> */}
+        </Route>
+
+        <Route path='/prime-app'>
+          
+          <Skills />
         </Route>
 
         <Route path="**">

@@ -24,9 +24,9 @@ const UserDetails = () => {
             <h1>UserDetails</h1>
             <div>
                 <h1>Name : {student.name} </h1>
-                <h1>City : {student.city} </h1>
-                <h1>State : {student.state} </h1>
-                <h1>Salary : {student.expected} </h1>
+                <h2>City : {student.city} </h2>
+                <h2>State : {student.state} </h2>
+                <h2>Salary : {student.expected} </h2>
             </div>
 
             <div>
