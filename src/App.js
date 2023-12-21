@@ -1,10 +1,11 @@
 
-import { Route, Switch, useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import { Redirect, Route, Switch, useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import './App.css';
 import About from './Pages/About';
-import Contact from './Pages/Contact';
 import Home from './Pages/Home';
 import Skills from './Pages/Skills';
+import UserDetails from './Pages/UserDetails';
+import NoPage from './NoPage';
 
 
 function App() {
@@ -15,7 +16,7 @@ function App() {
         <button onClick={()=>history.goForward()} >forward</button>
         <button onClick={()=>history.goBack()} >backword</button>
       </div>
-      <h2>Browser Router Application</h2>
+     
 
       <div className='nav-btn'>
 
@@ -38,9 +39,9 @@ function App() {
         </button>
 
         <button
-        onClick={()=>history.push("/contact/")}
+        onClick={()=>history.push("/user/")}
         >
-          Contact
+          User
         </button>
 
       </div>
@@ -54,12 +55,17 @@ function App() {
           <About />
         </Route>
 
-        <Route path='/contact/:id'>
-          <Contact />
+        <Route path='/user/:id/:name'>
+          <UserDetails />
         </Route>
 
         <Route path='/skills'>
-          <Skills />
+          <Redirect to = "/about" />
+          {/* <Skills /> */}
+        </Route>
+
+        <Route path="**">
+          <NoPage />
         </Route>
 
       </Switch>
@@ -72,3 +78,23 @@ function App() {
 }
 
 export default App;
+
+
+// step 1 : Switch statements <Switch> </Switch>
+// step 2 : add routes <Route path = "/{your component}" </Route>
+// step 3 : add exact path
+// step 4 : add 404 page <Route path="**"> </Route>
+// step 5 : between exact path and 404 path you shoul add your routes
+
+// other functionality
+// history hook ==> navigation to the different path
+// some of the functionality of history is
+// .push()
+// .replace()
+// .goForward()
+// .goBack()
+
+// params functionality
+// step 1 : pass the path with :id <parameters>
+// step 2 : get the is or parameter using useParam hook
+// step 3 : const {id} = useParams();
