@@ -1,17 +1,24 @@
-import React, { Suspense, lazy } from 'react';
+import React, { Suspense, createContext, lazy, useReducer } from 'react';
 import { Redirect, Route, Switch, useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import './App.css';
 // import About from './Pages/About';
 import Home from './Pages/Home';
-import Skills from './Pages/Skills';
+import Skills from './Pages/Context';
 import UserDetails from './Pages/UserDetails';
 import NoPage from './NoPage';
 import LogInPage from './LogInPage';
 import SignUpPage from './SignUpPage';
+import { reducer } from './reducerHook/Reducer';
+import Context from './Pages/Context';
 const OptimizedAbout = lazy(()=> import('./Pages/About'))
+
+export const ReducerContext = createContext(null);
 
 function App() {
   const history = useHistory();
+
+  const [state, dispatch] = useReducer(reducer,{datas:[]})
+
   return (
     <div className="App">
       <div>
@@ -37,7 +44,7 @@ function App() {
         <button
         onClick={()=>history.push("/skills")}
         >
-          Skills
+          Context
         </button>
 
         <button
@@ -80,13 +87,15 @@ function App() {
         </Route>
 
         <Route path='/skills'>
-          <Redirect to = "/about" />
-          {/* <Skills /> */}
+          <Redirect to = "/prime-app" />
+          
         </Route>
 
         <Route path='/prime-app'>
+          <ReducerContext.Provider value={[state, dispatch]} >
+          <Context />
+          </ReducerContext.Provider>
           
-          <Skills />
         </Route>
 
         <Route path="**">
