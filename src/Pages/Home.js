@@ -21,7 +21,7 @@ const Home = () => {
         // getUserDetails(); 
         // or
         localStorage.getItem("user-name") ? getUserDetails() : history.replace("/");
-    },[])
+    })
 
     const handleLogout = () => {
         localStorage.removeItem("user-name");

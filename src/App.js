@@ -3,13 +3,14 @@ import { Redirect, Route, Switch, useHistory } from 'react-router-dom/cjs/react-
 import './App.css';
 // import About from './Pages/About';
 import Home from './Pages/Home';
-import Skills from './Pages/Context';
+// import Skills from './Pages/Context';
 import UserDetails from './Pages/UserDetails';
 import NoPage from './NoPage';
 import LogInPage from './LogInPage';
 import SignUpPage from './SignUpPage';
 import { reducer } from './reducerHook/Reducer';
 import Context from './Pages/Context';
+import Orders from './Pages/Orders';
 const OptimizedAbout = lazy(()=> import('./Pages/About'))
 
 export const ReducerContext = createContext(null);
@@ -45,6 +46,12 @@ function App() {
         onClick={()=>history.push("/skills")}
         >
           Context
+        </button>
+
+        <button
+        onClick={()=>history.push("/orders")}
+        >
+          Orders
         </button>
 
         <button
@@ -88,6 +95,12 @@ function App() {
 
         <Route path='/skills'>
           <Redirect to = "/prime-app" />
+          
+        </Route>
+
+        <Route path='/orders'>
+          
+          <Orders/>
           
         </Route>
 
