@@ -1,20 +1,32 @@
 export const restoreProduct = (products) => {
 // dispatching the type and payload
-    return {
+    // return {
        
-            type:"restore_the_inventory",
-            payload: products,
+    //         type:"restore_the_inventory",
+    //         payload: products,
       
+    // }
+    return (dispatch) => {
+        dispatch({
+            type: "restore_the_inventory",
+            payload: products,
+        })
     }
 }
 
 export const purchaseProduct = (purchase) => {
 // dispatching the type and payload
-    return {
+    // return {
         
+    //         type: "purchase_list",
+    //         payload: purchase,
+        
+    // }
+    return(dispatch) => {
+        dispatch({
             type: "purchase_list",
             payload: purchase,
-        
+        })
     }
 }
 
