@@ -13,9 +13,15 @@ const Orders = () => {
     // const allActions = bindActionCreators(actionCreators, dispatch);
     // console.log(allActions);
 
-    const {purchaseProduct, restoreProduct} = bindActionCreators(actionCreators,dispatch);
+    const {purchaseProduct, restoreProduct, fetchUserDetails} = bindActionCreators(actionCreators,dispatch);
+
+    const actionAll = bindActionCreators(actionCreators,dispatch);
+
+    console.log(actionAll);
 
     console.log(reduxState);
+    console.log(reduxState.inventory);
+    console.log(reduxState.users);
 
     const [restore, setRestore] = useState();
     const [purchase, setPurchase] = useState();
@@ -43,6 +49,10 @@ const Orders = () => {
       <button
       onClick={()=>purchaseProduct(purchase)}
       >purchase order</button>
+
+      <button
+      onClick={()=> fetchUserDetails()}
+      >fetch data</button>
     </div>
   )
 }
